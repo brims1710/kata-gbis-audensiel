@@ -26,14 +26,14 @@ public class KataGbisApplication {
         Account account = Account.builder().balance(BigDecimal.valueOf(0.0)).firstName("Diop").lastName("Ibrahima").operations(operationsInit).build();
 
         Operation deposit = OperationService.deposit(account, BigDecimal.valueOf(1000));
-        log.info("User stories 1 is ================================= \n {}", deposit);
+        log.info("User stories 1 is =================================> \n {}", deposit);
         Operation withdral = OperationService.withDrawal(account, BigDecimal.valueOf(500));
 
-        log.info("User stories 2 is ==================================\n {}", withdral);
+        log.info("User stories 2 is ==================================>\n {}", withdral);
 
         List<Operation> operations = OperationService.listOperation(account);
 
-        log.info("User stories 3 the liste of operations==============\n {}", operations);
+        log.info("User stories 3 the liste of operations==============> {}", operations);
 
 
       //  SpringApplication.run(KataGbisApplication.class, args);
