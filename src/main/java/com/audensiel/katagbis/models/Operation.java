@@ -1,12 +1,6 @@
 package com.audensiel.katagbis.models;
-
 import com.audensiel.katagbis.models.emun.OperationType;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
-
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

@@ -1,5 +1,6 @@
 package com.audensiel.katagbis;
 
+import com.audensiel.katagbis.exception.AmountInvalidException;
 import com.audensiel.katagbis.exception.BalanceInsuffisant;
 import com.audensiel.katagbis.models.Account;
 import com.audensiel.katagbis.models.Operation;
@@ -40,6 +41,17 @@ public class OperationServiceTest {
     }
 
     @Test
+    void shouldNotDepositAmountInvalid() {
+        // Given
+        List<Operation> operations = new ArrayList<>();
+        Account account = Account.builder().balance(BigDecimal.valueOf(2000.0)).firstName("Diop").lastName("Ibrahima").operations(operations).build();
+
+        //Then
+        assertThrows(AmountInvalidException.class, () -> OperationService.deposit(account, BigDecimal.valueOf(-5)));
+
+    }
+
+    @Test
     void souldwithDrawal() {
 
         // Given
@@ -54,13 +66,24 @@ public class OperationServiceTest {
     }
 
     @Test
-    void souldNnotWithDrawal() {
+    void souldNotWithDrawal() {
         // Given
         List<Operation> operations = new ArrayList<>();
         Account account = Account.builder().balance(BigDecimal.valueOf(2000.0)).firstName("Diop").lastName("Ibrahima").operations(operations).build();
 
-
+        //Then
         assertThrows(BalanceInsuffisant.class, () -> OperationService.withDrawal(account, BigDecimal.valueOf(50000)));
+
+    }
+
+    @Test
+    void souldNotWithDrawalAmountInvalid() {
+        // Given
+        List<Operation> operations = new ArrayList<>();
+        Account account = Account.builder().balance(BigDecimal.valueOf(2000.0)).firstName("Diop").lastName("Ibrahima").operations(operations).build();
+
+        //Then
+        assertThrows(AmountInvalidException.class, () -> OperationService.withDrawal(account, BigDecimal.valueOf(-5)));
 
     }
 

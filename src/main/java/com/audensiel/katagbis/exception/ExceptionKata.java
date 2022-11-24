@@ -1,7 +1,6 @@
 package com.audensiel.katagbis.exception;
 
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 /**
  * @author diop

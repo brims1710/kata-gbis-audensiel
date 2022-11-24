@@ -1,5 +1,6 @@
 package com.audensiel.katagbis.service;
 
+import com.audensiel.katagbis.exception.AmountInvalidException;
 import com.audensiel.katagbis.exception.BalanceInsuffisant;
 import com.audensiel.katagbis.models.Account;
 import com.audensiel.katagbis.models.Operation;
@@ -25,10 +26,13 @@ public class OperationService {
      * @param amount
      * @return object operation
      */
-    public static Operation deposit(Account account, BigDecimal amount) {
+    public static Operation deposit(Account account, BigDecimal amount)  {
 
-        Operation operation = Operation.builder().operationType(OperationType.DEPOSIT).operationDate(LocalDateTime.now()).amount(amount).build();
+        if(amount.compareTo(BigDecimal.ZERO)<=0){
+            throw new AmountInvalidException();
+        }
         account.deposit(amount);
+        Operation operation = Operation.builder().operationType(OperationType.DEPOSIT).operationDate(LocalDateTime.now()).amount(amount).build();
         operation.setBalance(account.getBalance());
         account.addOperation(operation);
         List<Operation> operations= new ArrayList<>();
@@ -47,6 +51,10 @@ public class OperationService {
      * @return object operation
      */
     public static Operation withDrawal(Account account, BigDecimal amount) {
+
+        if(amount.compareTo(BigDecimal.ZERO)<=0){
+            throw new AmountInvalidException();
+        }
 
         if(account.getBalance().compareTo(amount)==-1){
                 throw new BalanceInsuffisant();

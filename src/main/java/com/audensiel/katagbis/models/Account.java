@@ -1,10 +1,7 @@
 package com.audensiel.katagbis.models;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
